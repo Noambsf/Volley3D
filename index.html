@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Volley3D: Unified 3D Full-Sequence Reconstruction from Monocular Broadcasts.">
+  <meta name="keywords" content="Volley3D, 3D Reconstruction, Computer Vision, Sports Analytics, Physics-Informed Learning, SMPL">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Volley3D: Unified 3D Full-Sequence Reconstruction from Monocular Broadcasts</title>
+
+  <!-- Google Fonts and FontAwesome -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <style>
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      color: #363636;
+    }
+    .publication-title {
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .author-block {
+      display: inline-block;
+      margin-right: 1.2rem;
+      font-size: 1.15rem;
+    }
+    .author-block a {
+      color: #3273dc;
+    }
+    .affiliation-block {
+      font-size: 1.0rem;
+      color: #555;
+      margin-top: 0.4rem;
+    }
+    .link-block a {
+      margin-top: 0.5rem;
+      border-radius: 24px;
+      padding-left: 1.2rem;
+      padding-right: 1.2rem;
+    }
+    .video-card {
+      background: #fafafa;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+    .video-card video {
+      width: 100%;
+      border-radius: 6px;
+      display: block;
+    }
+    .video-caption {
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+      color: #4a4a4a;
+    }
+    .section-title {
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 0.5rem;
+    }
+    .teaser-video-wrapper {
+      max-width: 960px;
+      margin: 0 auto 2rem auto;
+    }
+    pre {
+      background-color: #272822;
+      color: #f8f8f2;
+      padding: 1.2rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header & Authors Section -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop has-text-centered">
+        <h1 class="title is-2 publication-title">
+          Volley3D: Unified 3D Full-Sequence Reconstruction from Monocular Broadcasts
+        </h1>
+        
+        <div class="is-size-5 publication-authors">
+          <span class="author-block">
+            <a href="https://noambsf.github.io/" target="_blank">Noâm Boussouf</a><sup>1,2</sup>,
+          </span>
+          <span class="author-block">
+            <a href="#" target="_blank">Adrien Maglo</a><sup>3</sup>,
+          </span>
+          <span class="author-block">
+            <a href="#" target="_blank">Mohamed Chaouch</a><sup>3</sup>,
+          </span>
+          <span class="author-block">
+            <a href="http://www.hvrl.ics.keio.ac.jp/" target="_blank">Hideo Saito</a><sup>1</sup>
+          </span>
+        </div>
+
+        <div class="affiliation-block">
+          <span><sup>1</sup>Keio University (HVRL)</span> &nbsp;&nbsp;|&nbsp;&nbsp;
+          <span><sup>2</sup>École Centrale de Nantes</span> &nbsp;&nbsp;|&nbsp;&nbsp;
+          <span><sup>3</sup>Université Paris-Saclay, CEA-List, France</span>
+        </div>
+
+        <!-- Action Links & Placeholders -->
+        <div class="column has-text-centered mt-3">
+          <div class="publication-links">
+            <!-- arXiv Link Placeholder -->
+            <span class="link-block">
+              <a href="https://arxiv.org/abs/" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="ai ai-arxiv"></i></span>
+                <span>arXiv</span>
+              </a>
+            </span>
+            <!-- Code Link Placeholder -->
+            <span class="link-block">
+              <a href="https://github.com/Noambsf/Volley3D" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fab fa-github"></i></span>
+                <span>Code (Coming Soon)</span>
+              </a>
+            </span>
+            <!-- Dataset Link Placeholder -->
+            <span class="link-block">
+              <a href="https://github.com/Noambsf/Volley3D#annotations" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fas fa-database"></i></span>
+                <span>Dataset & Annotations</span>
+              </a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Teaser / Main Reconstruction Highlight -->
+  <section class="section pt-0">
+    <div class="container is-max-desktop">
+      <div class="teaser-video-wrapper has-text-centered">
+        <video controls autoplay muted loop playsinline>
+          <!-- Combined video or primary full rally visualization -->
+          <source src="static/videos/v_2Dnx8BpgUEs_c003_animated.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="subtitle is-6 mt-3">
+          <strong>Full Monocular 3D Reconstruction:</strong> Lifting an uncalibrated 2D broadcast rally into view-free 3D space.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstract Section -->
+  <section class="section has-background-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title has-text-centered">Abstract</h2>
+      <div class="content has-text-justified">
+        <p>
+          3D reconstruction from single-view broadcast sports is a pivotal capability for automated analytics and immersive AR/VR replays, yet notoriously ill-posed due to difficult-to-calibrate moving cameras and severe depth ambiguity. Unlike widely studied racket sports, team sports such as volleyball feature unpredictable multi-contact sequences and high-altitude jumps that invalidate standard planar ground assumptions.
+        </p>
+        <p>
+          To resolve these limitations without 3D training supervision, we propose a complete, physics-grounded pipeline tailored to monocular broadcast volleyball. First, we correct perspective drift induced by ground-plane projection by coupling temporal jump spotting with ballistic interpolation for accurate 3D player placement. Second, we introduce a monocular 3D ball trajectory estimation pipeline utilizing sub-trajectory segmentation and heuristic collision matching. By anchoring physical equations directly to reconstructed 3D hand vertices, we lift noisy 2D detections into a spatiotemporally coherent 3D scene.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Method & System Architecture Overview -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title">Framework Architecture</h2>
+      <div class="has-text-centered mb-4">
+        <img src="static/images/framework_overview.png" alt="Volley3D Pipeline Overview" style="max-width: 100%; border-radius: 8px; border: 1px solid #ddd;">
+      </div>
+      <div class="content has-text-justified">
+        <p>
+          Our pipeline is decoupled into two interconnected stages:
+        </p>
+        <ul>
+          <li><strong>Stage 1 (Player Reconstruction):</strong> Combines 2D tracking (YOLOX + Deep-EIoU), dynamic court homography estimation, and camera-space SMPL estimation (WHAM). To bypass planar projection breakdown during jumps, a temporal pose-based spotter isolates takeoff and landing frames, interpolating the 3D elevation via Newtonian motion equations.</li>
+          <li><strong>Stage 2 (Ball 3D Trajectory Estimation):</strong> Employs TrackNetV3 for 2D candidate localization, segments discontinuous rallies using a Temporal Convolutional Network (TCN), identifies contacting hands via heuristic collision matching, and solves a physics-governed Boundary Value Problem (BVP) with aerodynamic drag.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: Full Pipeline 3D Reconstruction -->
+  <section class="section has-background-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title">1. Full Pipeline 3D Reconstruction</h2>
+      <p class="mb-4">
+        End-to-end reconstructions on broadcast sequences, visualizing synchronized 3D player meshes in global court coordinates alongside aerodynamic ball trajectories.
+      </p>
+
+      <div class="columns is-multiline">
+        <!-- Rally 1 -->
+        <div class="column is-6">
+          <div class="video-card">
+            <video controls muted loop playsinline>
+              <source src="static/videos/v_2Dnx8BpgUEs_c003_animated.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption">
+              <strong>Rally Reconstruction Example 1</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rally 2 -->
+        <div class="column is-6">
+          <div class="video-card">
+            <video controls muted loop playsinline>
+              <source src="static/videos/match11_seq_22100_22395_animated.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption">
+              <strong>Rally Reconstruction Example 2</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Intermediate Sub-Module Visualizations -->
+  <!-- <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title">2. Intermediate Sub-Module Visualizations</h2>
+      <p class="mb-4">
+        Inspection of intermediate vision stages isolating player tracking, court calibration, vertical jump corrections, SMPL mesh extraction, and ball sub-trajectory segmentation.
+      </p>
+
+      <div class="columns is-multiline">
+        <!-- Tracking -->
+        <!-- <div class="column is-4">
+          <div class="video-card">
+            <video controls muted loop playsinline>
+              <source src="static/videos/v_2Dnx8BpgUEs_c003_tracks.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption">
+              <strong>2D Multi-Agent Tracking:</strong> Robust detection across crowded court interactions using YOLOX + Deep-EIoU.
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Calibration -->
+        <!-- <div class="column is-4">
+          <div class="video-card">
+            <video controls muted loop playsinline>
+              <source src="static/videos/v_2Dnx8BpgUEs_c003_calib.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption">
+              <strong>Court Keypoint Registration:</strong> Dynamic homography estimation under continuous camera panning and zooming.
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Jump Spotting -->
+        <!-- <div class="column is-4">
+          <div class="video-card">
+            <video controls muted loop playsinline>
+              <source src="static/videos/v_2Dnx8BpgUEs_c003_jump.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption">
+              <strong>Jump Spotting & Correction:</strong> Isolating airborne phases to eliminate homographic depth drift along the ground plane.
+            </div>
+          </div>
+        </div> -->
+
+        <!-- WHAM Overlays -->
+        <div class="column is-4">
+          <!-- <div class="video-card">
+            <video controls muted loop playsinline>
+              <source src="static/videos/v_2Dnx8BpgUEs_c003_wham.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption">
+              <strong>SMPL Mesh Poses (WHAM):</strong> Full-body articulation tracking overlaid on monocular broadcast footage.
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Ball Stage (Rally 1) -->
+        <!-- <div class="column is-4">
+          <div class="video-card">
+            <video controls muted loop playsinline>
+              <source src="static/videos/v_2Dnx8BpgUEs_c003_ball.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption">
+              <strong>Ball Pipeline (Seq c003):</strong> 2D ball tracking, TCN sub-trajectory segmentation, and hit agent assignment.
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Ball Stage (Rally 2) -->
+        <!-- <div class="column is-4">
+          <div class="video-card">
+            <video controls muted loop playsinline>
+              <source src="static/videos/match11_seq_22100_22395_ball.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption">
+              <strong>Ball Pipeline (Match 11):</strong> Sub-trajectory boundary identification across diverse defensive sets and spikes.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- Section 3: Physics-Based 3D Ball Lifting on VolliQ Benchmark -->
+  <section class="section has-background-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title">3. Physics-Based 3D Ball Lifting (VolliQ Benchmark)</h2>
+      <p class="mb-4">
+        Quantitative comparisons on the calibrated multi-camera VolliQ benchmark, contrasting our player-anchored aerodynamic solver against volleyball-adapted 2D-reprojection baselines (MonoTrack) and pure ballistics.
+      </p>
+
+      <div class="columns is-multiline">
+
+        <!-- Reproj vs Metric 3D Rally 0009 -->
+        <div class="column is-4">
+          <div class="video-card">
+            <video controls muted loop playsinline>
+              <source src="static/videos/rally_0009_reproj2d_3d_gt_vs_drag_vs_monotrack.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption">
+              <strong>2D vs 3D Drift (Rally 0009):</strong> MonoTrack minimizes 2D pixel reprojection but suffers severe 3D metric drift compared to our hand-anchored solver.
+            </div>
+          </div>
+        </div>
+
+        <!-- Reproj vs Metric 3D Rally 0012 -->
+        <div class="column is-4">
+          <div class="video-card">
+            <video controls muted loop playsinline>
+              <source src="static/videos/rally_0012_reproj2d_3d_gt_drag_monotrack.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption">
+              <strong>Trajectory Optimization (Rally 0012):</strong> Evaluation corresponding to Figure 4 in the main paper across multiple camera angles.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Drag vs Ballistics vs GT -->
+        <div class="column is-4">
+          <div class="video-card">
+            <video controls muted loop playsinline>
+              <source src="static/videos/rally_0009_gt_vs_ballistic_vs_drag.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption">
+              <strong>Aerodynamic Drag vs Ballistics:</strong> Trajectory simulation highlighting the drift caused by neglecting drag forces ($C_d = 0.035$).
+            </div>
+          </div>
+        </div>
+          
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- BibTeX Citation -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title">BibTeX</h2>
+      <pre><code>@article{boussouf2026volley3d,
+  title     = {Volley3D: Unified 3D Full-Sequence Reconstruction from Monocular Broadcasts},
+  author    = {Boussouf, No{\^a}m and Maglo, Adrien and Chaouch, Mohamed and Saito, Hideo},
+  journal   = {arXiv preprint},
+  year      = {2026}
+}</code></pre>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container has-text-centered">
+      <p class="is-size-7 has-text-grey">
+        Project page template inspired by <a href="https://github.com/nerfies/nerfies.github.io" target="_blank">Nerfies</a>.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
