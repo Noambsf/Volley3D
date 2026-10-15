@@ -67,9 +67,20 @@
       border-bottom: 2px solid #f0f0f0;
       padding-bottom: 0.5rem;
     }
-    .teaser-video-wrapper {
-      max-width: 960px;
-      margin: 0 auto 2rem auto;
+    /* Conteneur compact pour les 2 premières vidéos */
+    .compact-video-wrapper {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .compact-video-wrapper video {
+      max-height: 480px;
+      object-fit: contain;
+      width: 100%;
+    }
+    /* Conteneur centré pour les vidéos empilées de la section 3 */
+    .stacked-video-column {
+      max-width: 800px;
+      margin: 0 auto 1.5rem auto;
     }
     pre {
       background-color: #272822;
@@ -143,12 +154,11 @@
     </div>
   </section>
 
-  <!-- Teaser / Main Reconstruction Highlight -->
+  <!-- Teaser / Main Reconstruction Highlight (Vidéo 1 - Format réduit) -->
   <section class="section pt-0">
     <div class="container is-max-desktop">
-      <div class="teaser-video-wrapper has-text-centered">
+      <div class="compact-video-wrapper has-text-centered mb-4">
         <video controls autoplay muted loop playsinline>
-          <!-- Combined video or primary full rally visualization -->
           <source src="static/videos/v_2Dnx8BpgUEs_c003_animated.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -177,9 +187,9 @@
   <!-- Method & System Architecture Overview -->
   <section class="section">
     <div class="container is-max-desktop">
-      <h2 class="title is-3 section-title">Framework Architecture</h2>
+      <h2 class="title is-3 section-title">Global Pipeline Overview</h2>
       <div class="has-text-centered mb-4">
-        <img src="static/images/framework_overview.png" alt="Volley3D Pipeline Overview" style="max-width: 100%; border-radius: 8px; border: 1px solid #ddd;">
+        <img src="static/Global_Approach_3DReconstruction_Volley.drawio.png" alt="Volley3D Pipeline Overview" style="max-width: 100%; border-radius: 8px; border: 1px solid #ddd;">
       </div>
       <div class="content has-text-justified">
         <p>
@@ -187,133 +197,33 @@
         </p>
         <ul>
           <li><strong>Stage 1 (Player Reconstruction):</strong> Combines 2D tracking (YOLOX + Deep-EIoU), dynamic court homography estimation, and camera-space SMPL estimation (WHAM). To bypass planar projection breakdown during jumps, a temporal pose-based spotter isolates takeoff and landing frames, interpolating the 3D elevation via Newtonian motion equations.</li>
-          <li><strong>Stage 2 (Ball 3D Trajectory Estimation):</strong> Employs TrackNetV3 for 2D candidate localization, segments discontinuous rallies using a Temporal Convolutional Network (TCN), identifies contacting hands via heuristic collision matching, and solves a physics-governed Boundary Value Problem (BVP) with aerodynamic drag.</li>
+          <li><strong>Stage 2 (Ball 3D Trajectory Estimation):</strong> Employs TrackNetV3 for 2D candidate localization, segments discontinuous rallies using our network based on Temporal Convolutional Network (TCN) blocks, identifies contacting hands via our heuristic collision matching algorithm, and solves a physics-governed Boundary Value Problem (BVP) with aerodynamic drag.</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- Section 1: Full Pipeline 3D Reconstruction -->
+  <!-- Section 1: Full Pipeline 3D Reconstruction (Vidéo 2 - Format réduit) -->
   <section class="section has-background-light">
     <div class="container is-max-desktop">
       <h2 class="title is-3 section-title">1. Full Pipeline 3D Reconstruction</h2>
       <p class="mb-4">
         End-to-end reconstructions on broadcast sequences, visualizing synchronized 3D player meshes in global court coordinates alongside aerodynamic ball trajectories.
       </p>
-
-      <div class="columns is-multiline">
-        <!-- Rally 1 -->
-        <div class="column is-6">
-          <div class="video-card">
-            <video controls muted loop playsinline>
-              <source src="static/videos/v_2Dnx8BpgUEs_c003_animated.mp4" type="video/mp4">
-            </video>
-            <div class="video-caption">
-              <strong>Rally Reconstruction Example 1</strong>
-            </div>
-          </div>
-        </div>
-
-        <!-- Rally 2 -->
-        <div class="column is-6">
-          <div class="video-card">
-            <video controls muted loop playsinline>
-              <source src="static/videos/match11_seq_22100_22395_animated.mp4" type="video/mp4">
-            </video>
-            <div class="video-caption">
-              <strong>Rally Reconstruction Example 2</strong>
-            </div>
+      <div class="compact-video-wrapper">
+        <div class="video-card">
+          <video controls muted loop playsinline>
+            <source src="static/videos/match11_seq_22100_22395_animated.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption has-text-centered">
+            <strong>Rally Reconstruction Example 2</strong>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Section 2: Intermediate Sub-Module Visualizations -->
-  <!-- <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 section-title">2. Intermediate Sub-Module Visualizations</h2>
-      <p class="mb-4">
-        Inspection of intermediate vision stages isolating player tracking, court calibration, vertical jump corrections, SMPL mesh extraction, and ball sub-trajectory segmentation.
-      </p>
-
-      <div class="columns is-multiline">
-        <!-- Tracking -->
-        <!-- <div class="column is-4">
-          <div class="video-card">
-            <video controls muted loop playsinline>
-              <source src="static/videos/v_2Dnx8BpgUEs_c003_tracks.mp4" type="video/mp4">
-            </video>
-            <div class="video-caption">
-              <strong>2D Multi-Agent Tracking:</strong> Robust detection across crowded court interactions using YOLOX + Deep-EIoU.
-            </div>
-          </div>
-        </div> -->
-
-        <!-- Calibration -->
-        <!-- <div class="column is-4">
-          <div class="video-card">
-            <video controls muted loop playsinline>
-              <source src="static/videos/v_2Dnx8BpgUEs_c003_calib.mp4" type="video/mp4">
-            </video>
-            <div class="video-caption">
-              <strong>Court Keypoint Registration:</strong> Dynamic homography estimation under continuous camera panning and zooming.
-            </div>
-          </div>
-        </div> -->
-
-        <!-- Jump Spotting -->
-        <!-- <div class="column is-4">
-          <div class="video-card">
-            <video controls muted loop playsinline>
-              <source src="static/videos/v_2Dnx8BpgUEs_c003_jump.mp4" type="video/mp4">
-            </video>
-            <div class="video-caption">
-              <strong>Jump Spotting & Correction:</strong> Isolating airborne phases to eliminate homographic depth drift along the ground plane.
-            </div>
-          </div>
-        </div> -->
-
-        <!-- WHAM Overlays -->
-        <div class="column is-4">
-          <!-- <div class="video-card">
-            <video controls muted loop playsinline>
-              <source src="static/videos/v_2Dnx8BpgUEs_c003_wham.mp4" type="video/mp4">
-            </video>
-            <div class="video-caption">
-              <strong>SMPL Mesh Poses (WHAM):</strong> Full-body articulation tracking overlaid on monocular broadcast footage.
-            </div>
-          </div>
-        </div> -->
-
-        <!-- Ball Stage (Rally 1) -->
-        <!-- <div class="column is-4">
-          <div class="video-card">
-            <video controls muted loop playsinline>
-              <source src="static/videos/v_2Dnx8BpgUEs_c003_ball.mp4" type="video/mp4">
-            </video>
-            <div class="video-caption">
-              <strong>Ball Pipeline (Seq c003):</strong> 2D ball tracking, TCN sub-trajectory segmentation, and hit agent assignment.
-            </div>
-          </div>
-        </div> -->
-
-        <!-- Ball Stage (Rally 2) -->
-        <!-- <div class="column is-4">
-          <div class="video-card">
-            <video controls muted loop playsinline>
-              <source src="static/videos/match11_seq_22100_22395_ball.mp4" type="video/mp4">
-            </video>
-            <div class="video-caption">
-              <strong>Ball Pipeline (Match 11):</strong> Sub-trajectory boundary identification across diverse defensive sets and spikes.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- Section 3: Physics-Based 3D Ball Lifting on VolliQ Benchmark -->
+  <!-- Section 3: Physics-Based 3D Ball Lifting on VolliQ Benchmark (Vidéos empilées) -->
   <section class="section has-background-light">
     <div class="container is-max-desktop">
       <h2 class="title is-3 section-title">3. Physics-Based 3D Ball Lifting (VolliQ Benchmark)</h2>
@@ -321,45 +231,36 @@
         Quantitative comparisons on the calibrated multi-camera VolliQ benchmark, contrasting our player-anchored aerodynamic solver against volleyball-adapted 2D-reprojection baselines (MonoTrack) and pure ballistics.
       </p>
 
-      <div class="columns is-multiline">
-
+      <div class="stacked-video-column">
         <!-- Reproj vs Metric 3D Rally 0009 -->
-        <div class="column is-4">
-          <div class="video-card">
-            <video controls muted loop playsinline>
-              <source src="static/videos/rally_0009_reproj2d_3d_gt_vs_drag_vs_monotrack.mp4" type="video/mp4">
-            </video>
-            <div class="video-caption">
-              <strong>2D vs 3D Drift (Rally 0009):</strong> MonoTrack minimizes 2D pixel reprojection but suffers severe 3D metric drift compared to our hand-anchored solver.
-            </div>
+        <div class="video-card">
+          <video controls muted loop playsinline>
+            <source src="static/videos/rally_0009_reproj2d_3d_gt_vs_drag_vs_monotrack.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">
+            <strong>2D vs 3D Drift (Rally 0009):</strong> MonoTrack minimizes 2D pixel reprojection but suffers severe 3D metric drift compared to our hand-anchored solver.
           </div>
         </div>
 
         <!-- Reproj vs Metric 3D Rally 0012 -->
-        <div class="column is-4">
-          <div class="video-card">
-            <video controls muted loop playsinline>
-              <source src="static/videos/rally_0012_reproj2d_3d_gt_drag_monotrack.mp4" type="video/mp4">
-            </video>
-            <div class="video-caption">
-              <strong>Trajectory Optimization (Rally 0012):</strong> Evaluation corresponding to Figure 4 in the main paper across multiple camera angles.
-            </div>
+        <div class="video-card">
+          <video controls muted loop playsinline>
+            <source src="static/videos/rally_0012_reproj2d_3d_gt_drag_monotrack.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">
+            <strong>Trajectory Optimization (Rally 0012):</strong> Evaluation corresponding to Figure 4 in the main paper across multiple camera angles.
           </div>
         </div>
         
         <!-- Drag vs Ballistics vs GT -->
-        <div class="column is-4">
-          <div class="video-card">
-            <video controls muted loop playsinline>
-              <source src="static/videos/rally_0009_gt_vs_ballistic_vs_drag.mp4" type="video/mp4">
-            </video>
-            <div class="video-caption">
-              <strong>Aerodynamic Drag vs Ballistics:</strong> Trajectory simulation highlighting the drift caused by neglecting drag forces ($C_d = 0.035$).
-            </div>
+        <div class="video-card">
+          <video controls muted loop playsinline>
+            <source src="static/videos/rally_0009_gt_vs_ballistic_vs_drag.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">
+            <strong>Aerodynamic Drag vs Ballistics:</strong> Trajectory simulation highlighting the drift caused by neglecting drag forces ($C_d = 0.035$).
           </div>
         </div>
-          
-        
       </div>
     </div>
   </section>
