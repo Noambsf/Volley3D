@@ -1,8 +1,8 @@
-*Supplementary Material: Video Visualizations*
+# Supplementary Material: Video Visualizations
 
 This folder contains intermediate video visualizations.
 
-**1. Full Pipeline 3D Reconstruction**
+## Full Pipeline 3D Reconstruction
 
 - v_2Dnx8BpgUEs_c003_animated.mp4:
   Complete end-to-end 3D reconstruction on a monocular broadcast rally from 
@@ -15,7 +15,7 @@ This folder contains intermediate video visualizations.
 NB : Kapwing was used to assemble both videos in a single one.
 
 
-**2. Physics-Based 3D Ball Lifting & Baseline Comparisons (on VolliQ Dataset)**
+## Physics-Based 3D Ball Lifting & Baseline Comparisons (on VolliQ Dataset)
 
 - rally_0009_gt_vs_ballistic_vs_drag.mp4:
   Ablation comparing Ground Truth, pure ballistics (no drag), and our drag-aware 
